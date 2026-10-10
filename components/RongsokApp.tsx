@@ -122,7 +122,7 @@ export default function RongsokApp() {
         if (cancelled) return;
         const tensors: any[] = Array.isArray(outputs) ? outputs : Object.values(outputs ?? {});
         const arrays = await Promise.all(tensors.map(async (t: any) => {
-          try { return { shape: t.shape as number[], data: await t.data() as Float32Array }; catch { return null; }
+          try { return { shape: t.shape as number[], data: await t.data() as Float32Array }; } catch { return null; }
         }));
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
